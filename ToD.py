@@ -1,4 +1,4 @@
-import random
+from random import randint
 
 def menu():
     running = True
@@ -11,22 +11,30 @@ def menu():
 3 - Add Dares
 4 - Display Truths / Dares
 5 - Quit''')
-        option = input('Choose An Option: ')
+        check = True
+        option = ''
+        while check:
+            try:
+                assert type(option) in [int, float]
+                assert option <= 5
+                assert option >= 1
+            except AssertionError:
+                option = input('Choose An Option: ')
+            else:
+                check= False
         if option == '1':
-            main(truth,dare)
-        if option == '2':
+            main(truth, dare)
+        elif option == '2':
             add(truth)
-        if option == '3':
+        elif option == '3':
             add(dare)
-        if option == '4':
-            print('The Truths are:')
-            print(truth)
-            print('The Dares Are:')
-            print(dare)
-        if option == '5':
+        elif option == '4':
+            print('The Truths are:\n{}'.format(truth))
+            print('The Dares Are\n{}'.format(dare))
+        elif option == '5':
             print('Warning! This will remove all entered truths / dares')
             cont = input('Do you wish to continue? ').upper()
-            if cont == 'NO':
+            if cont == 'NO' or cont = 'N':
                 running = False
 
 def add(varName):
@@ -34,46 +42,46 @@ def add(varName):
     varName.append(newVarName)
     return varName
 
-def main(truth,dare):
+def main(truth, dare):
     player = input('How Many Players Are There? ')
     x = 0
     while x == 0:
         try:
             player = int(player)
             totalPlayer = player
-            x=1
+            x = 1
         except ValueError:
             player = input('How Many Players Are There? ')
     rounds = input('How Many Rounds Do You Wish To Play? ')
     while x == 1:
         try:
             rounds = int(rounds)
-            x=0
+            x = 0
         except ValueError:
             rounds = input('How Many Rounds Do You Wish To Play? ')
-    for i in range(0,rounds):      
+    for i in range(0, rounds):      
         while player > 0:
             tod = input('Truth or Dare? ').upper()
-            if tod == 'TRUTH':
-                randTruth = random.randint(0,len(truth)-1)
+            if tod == 'TRUTH' or tod == 'T':
+                randTruth = randint(0, len(truth) - 1)
                 print('')
                 print(truth[randTruth])
                 print('')
                 had = input('Already Had It? Re-roll? ').upper()
-                if had == 'YES':
-                    randTruth = random.randint(0,len(truth)-1)
+                if had == 'YES' or had == 'Y':
+                    randTruth = randint(0, len(truth) - 1)
                     print('')
                     print(truth[randTruth])
                     print('')
                 player = player - 1
-            elif tod == 'DARE':
-                randDare = random.randint(0,len(dare)-1)
+            elif tod == 'DARE' or tod == 'D':
+                randDare = randint(0, len(dare) - 1)
                 print('')
                 print(dare[randDare])
                 print('')
                 had = input('Already Had It? Re-roll? ').upper()
                 if had == 'YES':
-                    randDare = random.randint(0,len(dare)-1)
+                    randDare = randint(0, len(dare) - 1)
                     print('')
                     print(dare[randDare])
                     print('')
