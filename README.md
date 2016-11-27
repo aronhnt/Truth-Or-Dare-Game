@@ -2,7 +2,7 @@
 Simple Truth Or Dare Game,
 User Discretion is Advised
 
-**Run the ToD python file to play,**
+**Download & run the ToD python file to play,**
 
 ###### **If the option you enter doesn't work, check your spelling and try again.**
 
