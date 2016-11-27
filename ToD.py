@@ -1,4 +1,5 @@
 import random
+from ErrorCheck import errorCheck
 
 def menu():
     running = True
@@ -28,7 +29,9 @@ def menu():
             print('Warning! This will remove all entered truths / dares')
             cont = input('Do you wish to continue playing? ').upper()
             if cont == 'NO' or cont == 'N':
+                raise SystemExit
                 running = False
+                
 
 def add(varName):
     newVarName = input('What do you wish to add? ')
@@ -72,16 +75,6 @@ def main(truth,dare):
                 tod = input('Truth or Dare? ').upper()
         player = totalPlayer
     menu()
-
-def errorCheck(varName, type, question):
-    x=0
-    while x == 0:
-        try:
-            varName=type(varName)
-            x=1
-        except ValueError:
-            varName = input(question)
-    return varName
 
 menu()
 
